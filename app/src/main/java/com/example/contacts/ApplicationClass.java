@@ -14,7 +14,7 @@ public class ApplicationClass extends Application
     public static final String SERVER_URL = "https://api.backendless.com";
 
     public static BackendlessUser user;
-    public static List<Contact> contacts;
+    public static List<Contacts> contacts;
 
     @Override
     public void onCreate() {

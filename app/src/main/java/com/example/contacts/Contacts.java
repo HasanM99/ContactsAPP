@@ -2,14 +2,15 @@ package com.example.contacts;
 
 import java.util.Date;
 
-public class Contact {
+public class Contacts {
     private String name;
     private String number;
     private String email;
+    private String userEmail;
     private Date created;
     private Date updated;
     private String objectId;
-    private String userEmail;
+
 
     public String getUserEmail() {
         return userEmail;

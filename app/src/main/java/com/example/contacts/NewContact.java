@@ -57,7 +57,7 @@ public class NewContact extends AppCompatActivity {
                     String email = etMail.getText().toString().trim();
                     String number = etNumber.getText().toString().trim();
 
-                    Contact contact = new Contact();
+                    Contacts contact = new Contacts();
                     contact.setName(name);
                     contact.setEmail(email);
                     contact.setNumber(number);
@@ -66,9 +66,9 @@ public class NewContact extends AppCompatActivity {
                     showProgress(true);
                     tvLoad.setText("Creating new contact...");
 
-                    Backendless.Persistence.save(contact, new AsyncCallback<Contact>() {
+                    Backendless.Persistence.save(contact, new AsyncCallback<Contacts>() {
                         @Override
-                        public void handleResponse(Contact response) {
+                        public void handleResponse(Contacts response) {
                             Toast.makeText(NewContact.this, "New contact saved successfully!", Toast.LENGTH_SHORT).show();
                             showProgress(false);
                             etName.setText("");

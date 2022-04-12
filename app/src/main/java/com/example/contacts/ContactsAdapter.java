@@ -13,16 +13,16 @@ import androidx.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
-public class ContactsAdapter extends ArrayAdapter<Contact>
+public class ContactsAdapter extends ArrayAdapter<Contacts>
 {
     private Context context;
-    private List<Contact> contacts;
+    private List<Contacts> contacts;
 
-    public ContactsAdapter(Context context, List<Contact> list){
+    public ContactsAdapter(Context context, List<Contacts> list){
 
         super(context,R.layout.row_layout, list);
         this.context = context;
-        this.contacts = contacts;
+        this.contacts = list;
 
     }
 

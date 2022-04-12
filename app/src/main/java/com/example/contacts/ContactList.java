@@ -40,7 +40,7 @@ public class ContactList extends AppCompatActivity {
         mProgressView = findViewById(R.id.login_progress);
         tvLoad = findViewById(R.id.tvLoad);
 
-        String whereClause = "userEmail = '"+ ApplicationClass.user.getEmail()+"'";
+        String whereClause = "UserEmail = '"+ ApplicationClass.user.getEmail()+"'";
 
         DataQueryBuilder queryBuilder = DataQueryBuilder.create();
         queryBuilder.setWhereClause(whereClause);
@@ -49,9 +49,9 @@ public class ContactList extends AppCompatActivity {
         showProgress(true);
         tvLoad.setText("Getting contacts...");
 
-        Backendless.Persistence.of(Contact.class).find(queryBuilder, new AsyncCallback<List<Contact>>() {
+        Backendless.Persistence.of(Contacts.class).find(queryBuilder, new AsyncCallback<List<Contacts>>() {
             @Override
-            public void handleResponse(List<Contact> response) {
+            public void handleResponse(List<Contacts> response) {
 
                 ApplicationClass.contacts = response;
                 adapter = new ContactsAdapter(ContactList.this, ApplicationClass.contacts);

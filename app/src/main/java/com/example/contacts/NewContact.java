@@ -1,10 +1,11 @@
 package com.example.contacts;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
@@ -43,15 +48,13 @@ public class NewContact extends AppCompatActivity {
 
         btnNewContact = findViewById(R.id.btnNewContact);
 
-        btnNewContact.setOnClickListener(new View.OnClickListener()
-        {
+        btnNewContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (etMail.getText().toString().isEmpty() || etName.getText().toString().isEmpty() || etName.getText().toString().isEmpty()){
+                if (etMail.getText().toString().isEmpty() || etName.getText().toString().isEmpty() || etName.getText().toString().isEmpty()) {
                     Toast.makeText(NewContact.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
 
                     String name = etName.getText().toString().trim();
                     String email = etMail.getText().toString().trim();
@@ -81,7 +84,7 @@ public class NewContact extends AppCompatActivity {
 
                             Toast.makeText(NewContact.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
                             showProgress(false);
-                            
+
                         }
                     });
 
@@ -132,6 +135,38 @@ public class NewContact extends AppCompatActivity {
             tvLoad.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
+    }
+
+
+
+    //Notification function, taking in title and message strings
+    public void Notify(String title, String msg){
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("Notifications","Notifications", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"Notifications");
+        builder.setContentTitle(title);
+        builder.setContentText(msg);
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+        builder.setAutoCancel(true);
+
+        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
+        manager.notify(0,builder.build());
+    }
+
+
+
+    //Notification on leave while adding
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        Notify("Contact not saved!","Don't forget to save your contact.");
+
+        finish();
     }
 
 }

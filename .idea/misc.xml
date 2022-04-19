@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ikennedy/AndroidStudioProjects/ContactsAPPCOMP4200/app/src/main/res/layout/activity_contact_info.xml" value="0.15081521739130435" />
+        <entry key="..\:/Users/ikennedy/AndroidStudioProjects/ContactsAPPCOMP4200/app/src/main/res/layout/activity_contact_list.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/ikennedy/AndroidStudioProjects/ContactsAPPCOMP4200/app/src/main/res/layout/activity_login.xml" value="0.15081521739130435" />
         <entry key="app/src/main/res/drawable/call.xml" value="0.288" />
         <entry key="app/src/main/res/drawable/camera.xml" value="0.248" />
         <entry key="app/src/main/res/drawable/delete.xml" value="0.288" />
